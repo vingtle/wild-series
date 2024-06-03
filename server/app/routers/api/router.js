@@ -1,23 +1,14 @@
 const express = require("express");
-
-const programsRouter = require('./programs/router');
+const categoriesRouter = require("./categories/router");
+const programsRouter = require("./programs/router");
+const itemsRouter = require("./items/router");
+const { sayWelcome } = require("../../controllers/sayActions");
 
 const router = express.Router();
 
-router.use('/programs', programsRouter);
-const { sayWelcome } = require("../../controllers/sayActions");
-
 router.get("/", sayWelcome);
-
-// ...
-/* ************************************************************************* */
-// Import And Use Routers Here
-/* ************************************************************************* */
-
-const itemsRouter = require("./items/router");
-
+router.use("/categories", categoriesRouter);
+router.use("/programs", programsRouter);
 router.use("/items", itemsRouter);
-
-/* ************************************************************************* */
 
 module.exports = router;
